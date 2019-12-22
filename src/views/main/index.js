@@ -13,7 +13,7 @@ import {
 
 class Main extends Component {
   state = {
-    img: lemons
+                img: lemons
   };
 
   componentDidMount() {
