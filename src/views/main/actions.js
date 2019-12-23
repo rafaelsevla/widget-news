@@ -1,9 +1,19 @@
 import { ActionTypes as types } from './constants';
+import client from 'client';
+import CONSTANTS from '../../constants';
 
-export const clickButton = () => ({
-  type: types.CLICK_BUTTON
-});
+export const fetchNews = () => dispatch => {
+  dispatch({
+    type: types.FETCH_NEWS,
+  });
 
-export const resetState = () => ({
-  type: types.RESET_STATE
-});
+  client
+    .get(`${CONSTANTS.API.BASE}${CONSTANTS.API.TOP_HEADLINES}?country=us`)
+    .then(response => {
+      dispatch({
+        type: types.FETCH_NEWS_SUCCESS,
+        payload: response.data
+      });
+    })
+    .catch(e => dispatch({type: types.FETCH_NEWS_FAIL}))
+}

@@ -1,52 +1,97 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import lemons from 'assets/img/lemons.png';
-import lemonade from 'assets/img/lemonade.png';
-import { clickButton, resetState } from './actions';
-import {
-  Button,
-  Container,
-  ImgContainer,
-  InstructionsContainer,
-  Title
-} from './styles';
+import { fetchNews } from './actions'
+import { Badge,
+  Card,
+  CardBody,
+  CardText,
+  Row,
+  Col,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem ,
+  UncontrolledButtonDropdown
+} from 'reactstrap';
+import "./style.scss"
 
 class Main extends Component {
   state = {
-                img: lemons
-  };
+    dropdownOpen: false
+  }
 
   componentDidMount() {
-    this.props.resetState();
+    this.props.fetchNews()
+  }
+
+  renderDate = (date) => {
+    const newDate = date.split("T")[0].split("-")
+    return `${newDate[2]}/${newDate[1]}/${newDate[0]}`
+  }
+
+  toggle = () => {
+    this.setState({ dropdownOpen: !this.state.dropdownOpen });
   }
 
   render() {
-    const {
-      clickButton,
-      main: { buttonClick }
-    } = this.props;
+    const { news } = this.props;
+    const { dropdownOpen } = this.state;
 
     return (
-      <Container>
-        <InstructionsContainer>
-          <Title>When life gives you lemons...</Title>
-          <Button onClick={() => clickButton()}>Make lemonade!</Button>
-        </InstructionsContainer>
-        <ImgContainer>
-          <img src={buttonClick ? lemonade : lemons} alt="" width="200px" />
-        </ImgContainer>
-      </Container>
+      <Row className="justify-content-center">
+        <Col xs={6}>
+          <Col xs={12}>
+            <Row>
+              <h2>News</h2>
+              <UncontrolledButtonDropdown className="button-dropdown">
+                <DropdownToggle caret>
+                  Dropdown
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem header>Header</DropdownItem>
+                  <DropdownItem disabled>Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledButtonDropdown>
+            </Row>
+          </Col>
+            {news.articles.map((article, index) => (
+              <Row className="pt-3" key={index}>
+                <Col xs={12}>
+                  <Card>
+                    <CardBody>
+                      <CardText className="font-weight-bold">
+                        <a href={article.url} target="_blank" className="url-article">
+                          {article.title}
+                        </a>
+                        </CardText>
+                      <CardText>
+                        <small className="text-muted">{this.renderDate(article.publishedAt)}</small>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <Badge color="secondary">{article.source.name}</Badge>
+                      </CardText>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </Row>
+            ))}
+          </Col>
+        </Row>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  main: state.main
-});
+const mapStateToProps = state => {
+  const { main } = state;
+
+  return { ...main }
+};
 
 const mapDispatchToProps = {
-  clickButton,
-  resetState
+  fetchNews
 };
 
 export default connect(
