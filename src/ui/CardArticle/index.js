@@ -1,12 +1,12 @@
 import React from 'react';
-import { Badge,
+import { 
+  Badge,
   Card,
   CardBody,
   CardText,
   Row,
   Col,
 } from 'reactstrap';
-import "./style.scss"
 import { renderDate } from 'utils/functions'
 
 const CardArticle = ({ article, index }) => (

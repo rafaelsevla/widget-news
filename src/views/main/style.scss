@@ -1,4 +1,27 @@
+.row {
+  justify-content: space-between;
+  h3 {
+    margin-top: auto;
+    color: #ff4081;
+    border-bottom: 3px solid #ff4081;
+  }
+  
+  .button-dropdown {
+    margin-top: auto;
+    padding: 10px;
+    
+    button {
+      background-color: transparent;
+      color: #000;
+    }
+  }
+}
 
+@media(max-width: 800px) {
+  .row {
+    justify-content: center;
+  }
+}
   
 .url-article {
   color: #000;
