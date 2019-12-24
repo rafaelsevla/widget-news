@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { 
   Badge,
   Card,
@@ -6,7 +6,7 @@ import {
   CardText,
   Row,
   Col,
-} from 'reactstrap';
+} from 'reactstrap'
 import { renderDate } from 'utils/functions'
 
 const CardArticle = ({ article, index }) => (

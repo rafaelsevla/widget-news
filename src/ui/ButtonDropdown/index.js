@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem ,
   UncontrolledButtonDropdown
-} from 'reactstrap';
+} from 'reactstrap'
 
 const ButtonDropdown = ({ children, options, onClick }) => (  
   <UncontrolledButtonDropdown className="button-dropdown" >
@@ -23,7 +23,7 @@ const ButtonDropdown = ({ children, options, onClick }) => (
               overflow: 'auto',
               maxHeight: 200,
             },
-          };
+          }
         },
       },
     }}>

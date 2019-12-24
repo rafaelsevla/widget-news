@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Main from './views/main';
+import Main from './views/main'
 
 const Routes = () => (
   <BrowserRouter>
@@ -11,6 +11,6 @@ const Routes = () => (
       <Route exact path="/lemons-app" component={Main} />
     </Switch>
   </BrowserRouter>
-);
+)
 
-export default Routes;
+export default Routes

@@ -4,7 +4,7 @@ import {
   Row,
   Col
 } from 'reactstrap'
-import LoadingOverlay from 'react-loading-overlay';
+import LoadingOverlay from 'react-loading-overlay'
 import styled from 'styled-components'
 import { fetchBySource, fetchNews, fetchMoreNews, fetchSources } from './actions'
 import { ButtonDropdown, ButtonLoading, CardArticle } from 'ui'

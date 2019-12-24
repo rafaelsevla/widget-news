@@ -1,4 +1,4 @@
-import { ActionTypes as types } from './constants';
+import { ActionTypes as types } from './constants'
 
 export const initialState = {
   hasMoreNews: false,
@@ -13,7 +13,7 @@ export const initialState = {
   pageSize: 5,
   sources: [],
   source: ''
-};
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -62,6 +62,6 @@ export default (state = initialState, action) => {
       return { ...state, sources: action.payload.sources }
 
     default:
-      return state;
+      return state
   }
-};
+}

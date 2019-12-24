@@ -1,11 +1,11 @@
-import { ActionTypes as types } from './constants';
-import client from 'client';
-import CONSTANTS from '../../constants';
+import { ActionTypes as types } from './constants'
+import client from 'client'
+import CONSTANTS from '../../constants'
 
 export const fetchNews = () => dispatch => {
   dispatch({
     type: types.FETCH_NEWS,
-  });
+  })
 
   client
     .get(`${CONSTANTS.API.BASE}${CONSTANTS.API.TOP_HEADLINES}?country=us&pageSize=5`)
@@ -13,7 +13,7 @@ export const fetchNews = () => dispatch => {
       dispatch({
         type: types.FETCH_NEWS_SUCCESS,
         payload: response.data
-      });
+      })
     })
     .catch(e => dispatch({type: types.FETCH_NEWS_FAIL}))
 }
@@ -21,7 +21,7 @@ export const fetchNews = () => dispatch => {
 export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
   dispatch({
     type: types.FETCH_MORE_NEWS,
-  });
+  })
 
   let url = !!getState().main.source.length
   ? `${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=5&sources=${getState().main.source}`
@@ -33,9 +33,9 @@ export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
       dispatch({
         type: types.FETCH_MORE_NEWS_SUCCESS,
         payload: response.data
-      });
+      })
     })
-    .catch(e => dispatch({type: types.FETCH_MORE_NEWS_FAIL}))
+    .catch(() => dispatch({type: types.FETCH_MORE_NEWS_FAIL}))
 }
 
 export const fetchSources = () => dispatch => {
@@ -45,14 +45,14 @@ export const fetchSources = () => dispatch => {
       dispatch({
         type: types.FETCH_SOURCES_SUCCESS,
         payload: response.data
-      });
+      })
     })
 }
 
 export const fetchBySource = source => dispatch => {
   dispatch({
     type: types.FETCH_NEWS_BY_SOURCE,
-  });
+  })
 
   client
     .get(`${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=5&sources=${source}`)
@@ -60,7 +60,7 @@ export const fetchBySource = source => dispatch => {
       dispatch({
         type: types.FETCH_NEWS_BY_SOURCE_SUCCESS,
         payload: { ...response.data, source}
-      });
+      })
     })
     .catch(e => dispatch({type: types.FETCH_NEWS_BY_SOURCE_FAIL}))
 }
