@@ -6,7 +6,7 @@ import {
 } from 'reactstrap'
 import LoadingOverlay from 'react-loading-overlay';
 import styled from 'styled-components'
-import { fetchNews, fetchMoreNews, fetchSources } from './actions'
+import { fetchBySource, fetchNews, fetchMoreNews, fetchSources } from './actions'
 import { ButtonDropdown, ButtonLoading, CardArticle } from 'ui'
 import "./style.scss"
 
@@ -20,6 +20,14 @@ class Main extends Component {
     this.props.fetchSources()
   }
 
+  fetchBySource = source => {
+    this.props.fetchBySource(source.id)
+  }
+
+  toggle = () => {
+    this.setState({ dropdownOpen: !this.state.dropdownOpen })
+  }
+
   renderNews = (
     hasMoreNews,
     fetchingNews,
@@ -31,8 +39,10 @@ class Main extends Component {
     <Col xs={6} className="mb-5">
       <Col xs={12}>
         <Row xs={12}>
-          <h3>News</h3>
-          <ButtonDropdown options={sources}>
+          <h3>
+          <a href="/">News</a>
+          </h3>
+          <ButtonDropdown options={sources} onClick={source => this.fetchBySource(source)}>
             Filter By Source
           </ButtonDropdown>
         </Row>
@@ -84,6 +94,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
+  fetchBySource,
   fetchNews,
   fetchMoreNews,
   fetchSources

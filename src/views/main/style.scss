@@ -1,8 +1,13 @@
 .row {
   justify-content: space-between;
   h3 {
+    a {
+      color: #ff4081;
+      &:hover {
+        text-decoration: none;
+      }
+    }
     margin-top: auto;
-    color: #ff4081;
     border-bottom: 3px solid #ff4081;
   }
   

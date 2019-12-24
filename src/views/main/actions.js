@@ -19,13 +19,16 @@ export const fetchNews = () => dispatch => {
 }
 
 export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
-  console.log('get state', getState())
   dispatch({
     type: types.FETCH_MORE_NEWS,
   });
 
+  let url = !!getState().main.source.length
+  ? `${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=5&sources=${getState().main.source}`
+  : `${CONSTANTS.API.BASE}${CONSTANTS.API.TOP_HEADLINES}?country=us&pageSize=${pageSize}`
+
   client
-    .get(`${CONSTANTS.API.BASE}${CONSTANTS.API.TOP_HEADLINES}?country=us&pageSize=${pageSize}`)
+    .get(url)
     .then(response => {
       dispatch({
         type: types.FETCH_MORE_NEWS_SUCCESS,
@@ -45,4 +48,22 @@ export const fetchSources = () => dispatch => {
       });
     })
 }
+
+export const fetchBySource = source => dispatch => {
+  dispatch({
+    type: types.FETCH_NEWS_BY_SOURCE,
+  });
+
+  client
+    .get(`${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=5&sources=${source}`)
+    .then(response => {
+      dispatch({
+        type: types.FETCH_NEWS_BY_SOURCE_SUCCESS,
+        payload: { ...response.data, source}
+      });
+    })
+    .catch(e => dispatch({type: types.FETCH_NEWS_BY_SOURCE_FAIL}))
+}
+
+
 
