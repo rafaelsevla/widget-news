@@ -6,7 +6,7 @@ import {
 } from 'reactstrap'
 import LoadingOverlay from 'react-loading-overlay';
 import styled from 'styled-components'
-import { fetchNews, fetchMoreNews } from './actions'
+import { fetchNews, fetchMoreNews, fetchSources } from './actions'
 import { ButtonDropdown, ButtonLoading, CardArticle } from 'ui'
 import "./style.scss"
 
@@ -17,14 +17,22 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.fetchNews(5)
+    this.props.fetchSources()
   }
 
-  renderNews = (hasMoreNews, fetchingNews, news, fetchingMore, pageSize) => (
+  renderNews = (
+    hasMoreNews,
+    fetchingNews,
+    news,
+    fetchingMore,
+    pageSize,
+    sources
+  ) => (
     <Col xs={6} className="mb-5">
       <Col xs={12}>
         <Row xs={12}>
           <h3>News</h3>
-          <ButtonDropdown options={[1,2,3,4]}>
+          <ButtonDropdown options={sources}>
             Filter By Source
           </ButtonDropdown>
         </Row>
@@ -55,11 +63,11 @@ class Main extends Component {
   )
 
   render() {
-    const { hasMoreNews, fetchingNews, fetchingMore, news, pageSize } = this.props
+    const { hasMoreNews, fetchingNews, fetchingMore, news, pageSize, sources } = this.props
 
     return (
       <Row className="justify-content-center">
-        {this.renderNews(hasMoreNews, fetchingNews, news, fetchingMore, pageSize)}
+        {this.renderNews(hasMoreNews, fetchingNews, news, fetchingMore, pageSize, sources)}
       </Row>
     )
   }
@@ -77,7 +85,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   fetchNews,
-  fetchMoreNews
+  fetchMoreNews,
+  fetchSources
 }
 
 export default connect(

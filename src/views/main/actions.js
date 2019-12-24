@@ -18,7 +18,8 @@ export const fetchNews = () => dispatch => {
     .catch(e => dispatch({type: types.FETCH_NEWS_FAIL}))
 }
 
-export const fetchMoreNews = (pageSize) => dispatch => {
+export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
+  console.log('get state', getState())
   dispatch({
     type: types.FETCH_MORE_NEWS,
   });
@@ -33,3 +34,15 @@ export const fetchMoreNews = (pageSize) => dispatch => {
     })
     .catch(e => dispatch({type: types.FETCH_MORE_NEWS_FAIL}))
 }
+
+export const fetchSources = () => dispatch => {
+  client
+    .get(`${CONSTANTS.API.BASE}${CONSTANTS.API.SOURCES}?country=us&language=en`)
+    .then(response => {
+      dispatch({
+        type: types.FETCH_SOURCES_SUCCESS,
+        payload: response.data
+      });
+    })
+}
+

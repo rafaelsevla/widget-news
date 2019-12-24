@@ -10,7 +10,8 @@ export const initialState = {
     articles: [],
     totalResults: 0
   },
-  pageSize: 5
+  pageSize: 5,
+  sources: []
 };
 
 export default (state = initialState, action) => {
@@ -44,6 +45,9 @@ export default (state = initialState, action) => {
 
     case types.FETCH_NEWS_FAIL:
       return { ...state, fetchingMore: false, fetchingMoreNewsError: true }
+
+    case types.FETCH_SOURCES_SUCCESS:
+      return { ...state, sources: action.payload.sources }
 
     default:
       return state;

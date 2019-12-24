@@ -12,8 +12,8 @@ const ButtonDropdown = ({ children, options }) => (
       {children}
     </DropdownToggle>
     <DropdownMenu>
-      {options.map(option => (
-        <DropdownItem>{option}</DropdownItem>
+      {!!options.length && options.map(option => (
+        <DropdownItem>{option.name}</DropdownItem>
       ))}
     </DropdownMenu>
   </UncontrolledButtonDropdown>
