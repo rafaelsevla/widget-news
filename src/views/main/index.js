@@ -6,7 +6,7 @@ import {
 } from 'reactstrap'
 import LoadingOverlay from 'react-loading-overlay';
 import styled from 'styled-components'
-import { fetchNews } from './actions'
+import { fetchNews, fetchMoreNews } from './actions'
 import { ButtonDropdown, ButtonLoading, CardArticle } from 'ui'
 import "./style.scss"
 
@@ -19,7 +19,7 @@ class Main extends Component {
     this.props.fetchNews(5)
   }
 
-  renderNews = (fetchingNews, news, loadingMore) => (
+  renderNews = (hasMoreNews, fetchingNews, news, fetchingMore, pageSize) => (
     <Col xs={6} className="mb-5">
       <Col xs={12}>
         <Row xs={12}>
@@ -42,8 +42,12 @@ class Main extends Component {
           <CardArticle article={article} index={index} />
         ))}
 
-        <ButtonLoading loading={loadingMore}>
-          Show More
+        <ButtonLoading
+          disabled={hasMoreNews}
+          loading={fetchingMore}
+          onClick={() => this.props.fetchMoreNews(pageSize)}
+        >
+          {hasMoreNews ? 'No More News': 'Show More'}
         </ButtonLoading>
       </>
       )}
@@ -51,11 +55,11 @@ class Main extends Component {
   )
 
   render() {
-    const { fetchingNews, loadingMore, news } = this.props
+    const { hasMoreNews, fetchingNews, fetchingMore, news, pageSize } = this.props
 
     return (
       <Row className="justify-content-center">
-        {this.renderNews(fetchingNews, news, loadingMore)}
+        {this.renderNews(hasMoreNews, fetchingNews, news, fetchingMore, pageSize)}
       </Row>
     )
   }
@@ -72,7 +76,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  fetchNews
+  fetchNews,
+  fetchMoreNews
 }
 
 export default connect(

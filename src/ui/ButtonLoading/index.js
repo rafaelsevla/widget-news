@@ -3,8 +3,14 @@ import { Button } from 'reactstrap'
 import { BarLoader } from "react-spinners"
 import './style.scss'
 
-const ButtonLoading = ({ loading = false, children = 'Submit'}) => (
-  <Button outline color="danger" className="mt-3 btn-block">
+const ButtonLoading = ({ loading = false, children = 'Submit', disabled=false, onClick}) => (
+  <Button 
+    disabled={disabled}
+    outline
+    color="danger"
+    className="mt-3 btn-block"
+    onClick={onClick}
+  >
     {
     loading 
     ? (
