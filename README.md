@@ -1,17 +1,18 @@
-# [React Boilerplate with Redux!](https://rafaelsevla.github.io/lemons-app/)
+# [Widget News!](https://rafaelsevla.github.io/widget-news/)
 
 ## What's inside it?
 
-- [Babel](https://babeljs.io/) - A JavaScript compiler;
-- [Sass](https://sass-lang.com/) - CSS with superpowers;
+- [JavaScript Standard](https://standardjs.com/) - JavaScript style guide, linter, and formatter;
 - [React](https://reactjs.org) - A JavaScript library for building user interfaces;
+- [Reactstrap](https://reactstrap.github.io/) - Easy to use React Bootstrap 4 components;
 - [Redux](https://redux.js.org) - A predictable state container for JavaScript apps;
 - [Redux Persist](https://github.com/rt2zz/redux-persist) - Persist and rehydrate a redux store;
+- [Sass](https://sass-lang.com/) - CSS with superpowers;
 - [Styled Components](https://www.styled-components.com) - Visual primitives for the component age.
 
 ## Up and running
 
-- Clone this repository: `git clone git@github.com:rafaelsevla/lemons-app.git your-project-name`;
+- Clone this repository: `git clone git@github.com:rafaelsevla/widget-news.git your-project-name`;
 - Remove `.git` directory or run `git remote rm origin`;
 - Install dependencies: `yarn` (or `npm i`);
 - Run `yarn start` (or `npm start`) to develop on `http://localhost:3000`
@@ -25,4 +26,4 @@
 
 ## License
 
-- [MIT](https://github.com/rafaelsevla/lemons-app/blob/master/LICENSE) © [Rafael Costa](https://github.com/rafaelsevla)
+- [MIT](https://github.com/rafaelsevla/widget-news/blob/master/LICENSE) © [Rafael Costa](https://github.com/rafaelsevla)
