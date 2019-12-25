@@ -54,7 +54,7 @@ class Main extends Component {
       <Col xs={12}>
         <Row xs={12}>
           <h3>
-            <a href='/'>News</a>
+            <a href={window.location.href}>News</a>
           </h3>
           <ButtonDropdown options={sources} onClick={source => this.fetchBySource(source)}>
             Filter By Source
