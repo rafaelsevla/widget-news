@@ -55,7 +55,7 @@ export default (state = initialState, action) => {
         news: { articles: action.payload.articles, totalResults: action.payload.totalResults }
       }
 
-    case types.FETCH_NEWS_FAIL:
+    case types.FETCH_MORE_NEWS_FAIL:
       return { ...state, fetchingMore: false, fetchingMoreNewsError: true }
 
     case types.FETCH_SOURCES_SUCCESS:
