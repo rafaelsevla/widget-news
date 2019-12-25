@@ -8,6 +8,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path='/' component={Main} />
+      <Route exact path='/widget-news' component={Main} />
     </Switch>
   </BrowserRouter>
 )
