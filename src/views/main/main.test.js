@@ -18,7 +18,7 @@ test('should be return init fetch news', () => {
     sources: [],
     fetchingNews: true,
     pageSize: 5,
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     source: ''
   }
   expect(reducer(before, action)).toEqual(after)
@@ -40,7 +40,7 @@ test('should be return init fetch news by source', () => {
     sources: [],
     fetchingNews: true,
     pageSize: 5,
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     source: ''
   }
   expect(reducer(before, action)).toEqual(after)
@@ -49,7 +49,7 @@ test('should be return init fetch news by source', () => {
 test('should be return init fetch news success', () => {
   const before = initialState
 
-  const action = { 
+  const action = {
     type: types.FETCH_NEWS_SUCCESS,
     payload: newsMock
   }
@@ -62,7 +62,7 @@ test('should be return init fetch news success', () => {
     fetchingNews: false,
     pageSize: 10,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: newsMock.articles, totalResults: newsMock.totalResults }
   }
   expect(reducer(before, action)).toEqual(after)
@@ -71,7 +71,7 @@ test('should be return init fetch news success', () => {
 test('should be return init fetch news by source success', () => {
   const before = initialState
 
-  const action = { 
+  const action = {
     type: types.FETCH_NEWS_BY_SOURCE_SUCCESS,
     payload: { ...newsMock, source: 'engadget' }
   }
@@ -84,7 +84,7 @@ test('should be return init fetch news by source success', () => {
     fetchingNews: false,
     pageSize: 10,
     source: 'engadget',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: newsMock.articles, totalResults: newsMock.totalResults }
   }
   expect(reducer(before, action)).toEqual(after)
@@ -93,7 +93,7 @@ test('should be return init fetch news by source success', () => {
 test('should be return init fetch news error', () => {
   const before = initialState
 
-  const action = { 
+  const action = {
     type: types.FETCH_NEWS_FAIL
   }
 
@@ -105,7 +105,7 @@ test('should be return init fetch news error', () => {
     fetchingNews: false,
     pageSize: 5,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: [], totalResults: 0 }
   }
   expect(reducer(before, action)).toEqual(after)
@@ -114,7 +114,7 @@ test('should be return init fetch news error', () => {
 test('should be return init fetch news by source error', () => {
   const before = initialState
 
-  const action = { 
+  const action = {
     type: types.FETCH_NEWS_BY_SOURCE_FAIL
   }
 
@@ -126,7 +126,7 @@ test('should be return init fetch news by source error', () => {
     fetchingNews: false,
     pageSize: 5,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: [], totalResults: 0 }
   }
   expect(reducer(before, action)).toEqual(after)
@@ -141,11 +141,11 @@ test('should be return init fetch more news', () => {
     fetchingNews: false,
     pageSize: 10,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: newsMock.articles, totalResults: newsMock.totalResults }
   }
 
-  const action = { 
+  const action = {
     type: types.FETCH_MORE_NEWS
   }
 
@@ -157,7 +157,7 @@ test('should be return init fetch more news', () => {
     fetchingNews: false,
     pageSize: 10,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: newsMock.articles, totalResults: newsMock.totalResults }
   }
   expect(reducer(before, action)).toEqual(after)
@@ -172,11 +172,11 @@ test('should be return init fetch more news success', () => {
     fetchingNews: false,
     pageSize: 5,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: newsMock.articles, totalResults: newsMock.totalResults }
   }
 
-  const action = { 
+  const action = {
     type: types.FETCH_MORE_NEWS_SUCCESS,
     payload: newsMock_2
   }
@@ -189,13 +189,13 @@ test('should be return init fetch more news success', () => {
     fetchingNews: false,
     pageSize: 10,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: newsMock_2.articles, totalResults: newsMock_2.totalResults }
   }
   expect(reducer(before, action)).toEqual(after)
 })
 
-test('should be return init fetch more news success with hasMoreNews true', () => {
+test('should be return init fetch more news success with hasNoMoreNews true', () => {
   const before = {
     fetchingNewsError: false,
     fetchingMoreNewsError: false,
@@ -204,11 +204,11 @@ test('should be return init fetch more news success with hasMoreNews true', () =
     fetchingNews: false,
     pageSize: 5,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: newsMock_2.articles, totalResults: newsMock_2.totalResults }
   }
 
-  const action = { 
+  const action = {
     type: types.FETCH_MORE_NEWS_SUCCESS,
     payload: newsMock_2
   }
@@ -221,7 +221,7 @@ test('should be return init fetch more news success with hasMoreNews true', () =
     fetchingNews: false,
     pageSize: 10,
     source: '',
-    hasMoreNews: true,
+    hasNoMoreNews: true,
     news: { articles: newsMock_2.articles, totalResults: newsMock_2.totalResults }
   }
   expect(reducer(before, action)).toEqual(after)
@@ -230,7 +230,7 @@ test('should be return init fetch more news success with hasMoreNews true', () =
 test('should be return init fetch source success', () => {
   const before = initialState
 
-  const action = { 
+  const action = {
     type: types.FETCH_MORE_NEWS_FAIL
   }
 
@@ -241,7 +241,7 @@ test('should be return init fetch source success', () => {
     fetchingNews: false,
     pageSize: 5,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: [], totalResults: 0 },
     fetchingMoreNewsError: true
   }
@@ -251,7 +251,7 @@ test('should be return init fetch source success', () => {
 test('should be return init fetch more news success', () => {
   const before = initialState
 
-  const action = { 
+  const action = {
     type: types.FETCH_SOURCES_SUCCESS,
     payload: sources
   }
@@ -264,7 +264,7 @@ test('should be return init fetch more news success', () => {
     fetchingNews: false,
     pageSize: 5,
     source: '',
-    hasMoreNews: false,
+    hasNoMoreNews: false,
     news: { articles: [], totalResults: 0 }
   }
   expect(reducer(before, action)).toEqual(after)

@@ -1,13 +1,14 @@
 import React from 'react'
+import t from 'prop-types'
 import {
   DropdownToggle,
   DropdownMenu,
-  DropdownItem ,
+  DropdownItem,
   UncontrolledButtonDropdown
 } from 'reactstrap'
 
-const ButtonDropdown = ({ children, options, onClick }) => (  
-  <UncontrolledButtonDropdown className="button-dropdown" >
+const ButtonDropdown = ({ children, options, onClick }) => (
+  <UncontrolledButtonDropdown className='button-dropdown'>
     <DropdownToggle caret>
       {children}
     </DropdownToggle>
@@ -21,20 +22,25 @@ const ButtonDropdown = ({ children, options, onClick }) => (
             styles: {
               ...data.styles,
               overflow: 'auto',
-              maxHeight: 200,
-            },
+              maxHeight: 200
+            }
           }
-        },
-      },
+        }
+      }
     }}>
       <div>
-
-      {!!options.length && options.map(option => (
-        <DropdownItem onClick={() => onClick(option)}>{option.name}</DropdownItem>
+        {!!options.length && options.map(option => (
+          <DropdownItem onClick={() => onClick(option)}>{option.name}</DropdownItem>
         ))}
-        </div>
+      </div>
     </DropdownMenu>
   </UncontrolledButtonDropdown>
 )
+
+ButtonDropdown.propTypes = {
+  options: t.array.isRequired,
+  children: t.string.isRequired,
+  onClick: t.func
+}
 
 export default ButtonDropdown

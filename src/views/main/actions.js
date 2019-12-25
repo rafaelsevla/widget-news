@@ -4,7 +4,7 @@ import CONSTANTS from '../../constants'
 
 export const fetchNews = () => dispatch => {
   dispatch({
-    type: types.FETCH_NEWS,
+    type: types.FETCH_NEWS
   })
 
   client
@@ -15,17 +15,17 @@ export const fetchNews = () => dispatch => {
         payload: response.data
       })
     })
-    .catch(e => dispatch({type: types.FETCH_NEWS_FAIL}))
+    .catch(() => dispatch({ type: types.FETCH_NEWS_FAIL }))
 }
 
 export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
   dispatch({
-    type: types.FETCH_MORE_NEWS,
+    type: types.FETCH_MORE_NEWS
   })
 
-  let url = !!getState().main.source.length
-  ? `${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=5&sources=${getState().main.source}`
-  : `${CONSTANTS.API.BASE}${CONSTANTS.API.TOP_HEADLINES}?country=us&pageSize=${pageSize}`
+  let url = getState().main.source.length
+    ? `${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=5&sources=${getState().main.source}`
+    : `${CONSTANTS.API.BASE}${CONSTANTS.API.TOP_HEADLINES}?country=us&pageSize=${pageSize}`
 
   client
     .get(url)
@@ -35,7 +35,7 @@ export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
         payload: response.data
       })
     })
-    .catch(() => dispatch({type: types.FETCH_MORE_NEWS_FAIL}))
+    .catch(() => dispatch({ type: types.FETCH_MORE_NEWS_FAIL }))
 }
 
 export const fetchSources = () => dispatch => {
@@ -51,7 +51,7 @@ export const fetchSources = () => dispatch => {
 
 export const fetchBySource = source => dispatch => {
   dispatch({
-    type: types.FETCH_NEWS_BY_SOURCE,
+    type: types.FETCH_NEWS_BY_SOURCE
   })
 
   client
@@ -59,11 +59,8 @@ export const fetchBySource = source => dispatch => {
     .then(response => {
       dispatch({
         type: types.FETCH_NEWS_BY_SOURCE_SUCCESS,
-        payload: { ...response.data, source}
+        payload: { ...response.data, source }
       })
     })
-    .catch(e => dispatch({type: types.FETCH_NEWS_BY_SOURCE_FAIL}))
+    .catch(e => dispatch({ type: types.FETCH_NEWS_BY_SOURCE_FAIL }))
 }
-
-
-
