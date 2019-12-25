@@ -15,7 +15,10 @@ export const fetchNews = () => dispatch => {
         payload: response.data
       })
     })
-    .catch(() => dispatch({ type: types.FETCH_NEWS_FAIL }))
+    .catch(() => {
+      dispatch({ type: types.FETCH_NEWS_FAIL })
+      alert('Algo inesperado aconteceu. Por favor, reinicie a página.')
+    })
 }
 
 export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
@@ -24,7 +27,7 @@ export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
   })
 
   let url = getState().main.source.length
-    ? `${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=5&sources=${getState().main.source}`
+    ? `${CONSTANTS.API.BASE}${CONSTANTS.API.EVERYTHING}?pageSize=${pageSize}&sources=${getState().main.source}`
     : `${CONSTANTS.API.BASE}${CONSTANTS.API.TOP_HEADLINES}?country=us&pageSize=${pageSize}`
 
   client
@@ -35,7 +38,10 @@ export const fetchMoreNews = (pageSize) => (dispatch, getState) => {
         payload: response.data
       })
     })
-    .catch(() => dispatch({ type: types.FETCH_MORE_NEWS_FAIL }))
+    .catch(() => {
+      dispatch({ type: types.FETCH_MORE_NEWS_FAIL })
+      alert('Algo inesperado aconteceu. Por favor, reinicie a página.')
+    })
 }
 
 export const fetchSources = () => dispatch => {
@@ -62,5 +68,8 @@ export const fetchBySource = source => dispatch => {
         payload: { ...response.data, source }
       })
     })
-    .catch(e => dispatch({ type: types.FETCH_NEWS_BY_SOURCE_FAIL }))
+    .catch(() => {
+      dispatch({ type: types.FETCH_NEWS_BY_SOURCE_FAIL })
+      alert('Algo inesperado aconteceu. Por favor, reinicie a página.')
+    })
 }

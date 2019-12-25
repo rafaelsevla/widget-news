@@ -20,8 +20,8 @@ class Main extends Component {
     hasNoMoreNews: t.bool,
     fetchingNews: t.bool,
     fetchingMore: t.bool,
-    news: t.array,
-    pageSize: t.string,
+    news: t.object,
+    pageSize: t.number,
     sources: t.array
   };
 
@@ -68,8 +68,11 @@ class Main extends Component {
           text='Loading your content...'
         />
         : <>
-          {news.articles.map((article, index) => (
-            <CardArticle article={article} index={index} />
+          {news.articles.map((article) => (
+            <CardArticle
+              key={article.url}
+              article={article}
+            />
           ))}
 
           <ButtonLoading

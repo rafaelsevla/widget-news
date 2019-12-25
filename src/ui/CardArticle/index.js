@@ -10,13 +10,18 @@ import {
 } from 'reactstrap'
 import { renderDate } from 'utils/functions'
 
-const CardArticle = ({ article, index }) => (
-  <Row className='pt-3' key={index}>
+const CardArticle = ({ article }) => (
+  <Row className='pt-3'>
     <Col xs={12}>
       <Card>
         <CardBody>
           <CardText className='font-weight-bold'>
-            <a href={article.url} target='_blank' className='url-article'>
+            <a
+              href={article.url}
+              target='_blank'
+              className='url-article'
+              rel='noopener noreferrer'
+            >
               {article.title}
             </a>
           </CardText>
@@ -34,8 +39,7 @@ const CardArticle = ({ article, index }) => (
 )
 
 CardArticle.propTypes = {
-  article: t.object.isRequired,
-  index: t.string.isRequired
+  article: t.object.isRequired
 }
 
 export default CardArticle

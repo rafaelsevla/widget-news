@@ -30,7 +30,12 @@ const ButtonDropdown = ({ children, options, onClick }) => (
     }}>
       <div>
         {!!options.length && options.map(option => (
-          <DropdownItem onClick={() => onClick(option)}>{option.name}</DropdownItem>
+          <DropdownItem
+            onClick={() => onClick(option)}
+            key={option.id}
+          >
+            {option.name}
+          </DropdownItem>
         ))}
       </div>
     </DropdownMenu>
