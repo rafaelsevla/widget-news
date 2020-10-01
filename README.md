@@ -24,6 +24,13 @@
 - `yarn run test (or npm run test)`: Run tests once
 - `yarn run test --watch (or npm run test --watch)`: Run tests in watch mode
 
+
+## Author
+
+| ![Rafael Costa](https://avatars3.githubusercontent.com/u/38443896?s=400&u=d75c5174768121c3a6aa1ee1f62da8337dc8e002&v=4 )|
+|:---------------------:|
+|  [Rafael Costa](https://github.com/rafaelsevla/)   |
+
 ## License
 
 - [MIT](https://github.com/rafaelsevla/widget-news/blob/master/LICENSE) © [Rafael Costa](https://github.com/rafaelsevla)
